@@ -1,0 +1,152 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+  
+  --font-sans: 'Inter', sans-serif;
+  
+  --radius: 0.5rem;
+}
+
+:root {
+  /* CIDAI Theme Colors */
+  /* Primary: #1C3F3A */
+  --primary: 171 38% 18%;
+  --primary-foreground: 0 0% 100%;
+
+  /* Secondary: #EBE8D8 */
+  --secondary: 50 30% 88%;
+  --secondary-foreground: 171 38% 18%; /* Using primary for contrast */
+
+  /* Accent: #458FF6 */
+  --accent: 215 90% 62%;
+  --accent-foreground: 0 0% 100%;
+
+  /* Background: #FFFFFF */
+  --background: 0 0% 100%;
+  --foreground: 218 23% 23%; /* #2D3748 */
+
+  /* Surface/Card: #FFFFFF */
+  --card: 0 0% 100%;
+  --card-foreground: 218 23% 23%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 218 23% 23%;
+
+  /* Muted: #7D7987 */
+  --muted: 257 6% 95%; /* Lighter for background */
+  --muted-foreground: 257 6% 51%; /* #7D7987 */
+
+  /* Border: #E2E8F0 */
+  --border: 210 20% 92%;
+  --input: 210 20% 92%;
+  
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+
+  --ring: 171 38% 18%;
+
+  --chart-1: 171 38% 18%;
+  --chart-2: 215 90% 62%;
+  --chart-3: 50 30% 88%;
+  --chart-4: 257 6% 51%;
+  --chart-5: 218 23% 23%;
+
+  --radius: 0.5rem;
+}
+
+.dark {
+  /* Dark mode mappings (if needed later, but design system specified light theme) */
+  --background: 218 23% 10%;
+  --foreground: 0 0% 98%;
+  
+  --card: 218 23% 12%;
+  --card-foreground: 0 0% 98%;
+  
+  --popover: 218 23% 12%;
+  --popover-foreground: 0 0% 98%;
+  
+  --primary: 171 38% 25%;
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 171 20% 20%;
+  --secondary-foreground: 0 0% 98%;
+  
+  --muted: 171 20% 20%;
+  --muted-foreground: 257 6% 70%;
+  
+  --accent: 215 90% 62%;
+  --accent-foreground: 0 0% 100%;
+  
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  
+  --border: 171 20% 20%;
+  --input: 171 20% 20%;
+  --ring: 171 38% 25%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight text-[#1C3F3A];
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Custom utility for the blob backgrounds */
+  .bg-blob {
+    @apply absolute -z-10 blur-3xl opacity-10 rounded-full;
+  }
+}
