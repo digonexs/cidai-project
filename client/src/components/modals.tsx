@@ -107,7 +107,12 @@ export function VolunteerModal({ open, onOpenChange }: { open: boolean, onOpenCh
                 <FormItem>
                   <FormLabel>Telefone / WhatsApp</FormLabel>
                   <FormControl>
-                    <Input placeholder="(00) 00000-0000" {...field} className="rounded-xl border-gray-200" />
+                    <Input
+                      placeholder="(00) 00000-0000"
+                      {...field}
+                      onChange={(e) => field.onChange(formatPhone(e.target.value))}
+                      className="rounded-xl border-gray-200"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -136,6 +141,26 @@ export function VolunteerModal({ open, onOpenChange }: { open: boolean, onOpenCh
       </DialogContent>
     </Dialog>
   );
+}
+
+function formatPhone(value: string) {
+  const digits = value.replace(/\D/g, "").slice(0, 11);
+  if (digits.length <= 10) {
+    return digits
+      .replace(/(\d{2})(\d)/, "($1) $2")
+      .replace(/(\d{4})(\d)/, "$1-$2");
+  }
+  return digits
+    .replace(/(\d{2})(\d)/, "($1) $2")
+    .replace(/(\d{5})(\d)/, "$1-$2");
+}
+
+function formatCPF(value: string) {
+  const digits = value.replace(/\D/g, "").slice(0, 11);
+  return digits
+    .replace(/(\d{3})(\d)/, "$1.$2")
+    .replace(/(\d{3})(\d)/, "$1.$2")
+    .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
 }
 
 export function CertificateModal({ open, onOpenChange }: { open: boolean, onOpenChange: (open: boolean) => void }) {
@@ -261,7 +286,12 @@ export function CertificateModal({ open, onOpenChange }: { open: boolean, onOpen
                 <FormItem>
                   <FormLabel>CPF</FormLabel>
                   <FormControl>
-                    <Input placeholder="000.000.000-00" {...field} className="rounded-xl border-gray-200" />
+                    <Input
+                      placeholder="000.000.000-00"
+                      {...field}
+                      onChange={(e) => field.onChange(formatCPF(e.target.value))}
+                      className="rounded-xl border-gray-200"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
